@@ -509,6 +509,11 @@ export class SwitchBotPlatform implements DynamicPlatformPlugin {
         const deviceIdConfig = this.config.options?.devices?.[device.deviceId] || {}
         const deviceWithConfig = Object.assign({}, device, deviceIdConfig)
 
+        // Ensure deviceType is preserved during merge
+        if (!deviceWithConfig.deviceType && device.deviceType) {
+          deviceWithConfig.deviceType = device.deviceType
+        }
+
         if (device.configDeviceName) {
           device.deviceName = device.configDeviceName
         }
