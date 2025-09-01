@@ -511,7 +511,7 @@ export class StripLight extends deviceBase {
               await this.BLEPushConnection()
             })
         } else {
-          this.errorLog(`wasn't able to establish BLE Connection, node-switchbot: ${JSON.stringify(switchBotBLE)}`)
+          this.errorLog(`wasn't able to establish BLE Connection, node-switchbot: ${String(switchBotBLE)}`)
           await this.BLEPushConnection()
         }
       } catch (error) {
@@ -547,7 +547,7 @@ export class StripLight extends deviceBase {
               await this.BLEPushConnection()
             })
         } else {
-          this.errorLog(`wasn't able to establish BLE Connection, node-switchbot: ${JSON.stringify(switchBotBLE)}`)
+          this.errorLog(`wasn't able to establish BLE Connection, node-switchbot: ${String(switchBotBLE)}`)
           await this.BLEPushConnection()
         }
       } catch (error) {
@@ -586,7 +586,7 @@ export class StripLight extends deviceBase {
               await this.BLEPushConnection()
             })
         } else {
-          this.errorLog(`wasn't able to establish BLE Connection, node-switchbot: ${JSON.stringify(switchBotBLE)}`)
+          this.errorLog(`wasn't able to establish BLE Connection, node-switchbot: ${String(switchBotBLE)}`)
           await this.BLEPushConnection()
         }
       } catch (error) {

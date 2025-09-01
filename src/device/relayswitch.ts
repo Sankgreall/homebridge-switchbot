@@ -445,7 +445,7 @@ export class RelaySwitch extends deviceBase {
           .then(async (device_list: SwitchbotDevice[]) => {
             const deviceList = device_list as WoRelaySwitch1[] | WoRelaySwitch1PM[]
             this.infoLog(`On: ${this.On}`)
-            this.warnLog(`device_list: ${JSON.stringify(device_list)}`)
+            this.warnLog(`device_list length: ${device_list.length}`)
             return await this.retryBLE({
               max: this.maxRetryBLE(),
               fn: async () => {

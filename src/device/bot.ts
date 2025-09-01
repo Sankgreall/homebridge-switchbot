@@ -527,17 +527,25 @@ export class Bot extends deviceBase {
               }, 500)
             })
             .catch(async (e: any) => {
+              this.errorLog(`BLE Error Type: ${e.constructor.name}`)
+              this.errorLog(`BLE Error Stack: ${e.stack?.split('\n')[0] || 'No stack'}`)
               await this.apiError(e)
-              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
+              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e.toString() || 'Unknown error'}`)
               await this.BLEPushConnection()
             })
         } else if (this.botMode === 'switch') {
+          this.debugLog(`Attempting BLE discovery with model: ${this.device.bleModel}, id: ${this.device.bleMac}`)
+          this.debugLog(`switchBotBLE available: ${switchBotBLE ? 'true' : 'false'}`)
           switchBotBLE
             .discover({ model: this.device.bleModel, quick: true, id: this.device.bleMac })
             .then(async (device_list: SwitchbotDevice[]) => {
               const deviceList = device_list as WoHand[]
               this.infoLog(`On: ${this.On}`)
-              this.warnLog(`device_list: ${JSON.stringify(device_list)}`)
+              this.debugLog(`Devices found: ${device_list.length}`)
+              if (device_list.length > 0) {
+                this.debugLog(`First device: id=${device_list[0].id}, modelName=${device_list[0].modelName}`)
+              }
+              this.warnLog(`device_list length: ${device_list.length}`)
               return await this.retryBLE({
                 max: this.maxRetryBLE(),
                 fn: async () => {
@@ -558,8 +566,10 @@ export class Bot extends deviceBase {
               await this.updateHomeKitCharacteristics()
             })
             .catch(async (e: any) => {
+              this.errorLog(`BLE Error Type: ${e.constructor.name}`)
+              this.errorLog(`BLE Error Stack: ${e.stack?.split('\n')[0] || 'No stack'}`)
               await this.apiError(e)
-              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
+              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e.toString() || 'Unknown error'}`)
               await this.BLEPushConnection()
             })
         } else {
