@@ -295,7 +295,7 @@ export class Curtain extends deviceBase {
           await this.pushChanges()
         } catch (e: any) {
           await this.apiError(e)
-          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${e.message || e}`)
+          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
         }
         this.curtainUpdateInProgress = false
       })
@@ -525,7 +525,7 @@ export class Curtain extends deviceBase {
       }
     } catch (e: any) {
       await this.apiError(e)
-      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
     }
   }
 
@@ -634,7 +634,7 @@ export class Curtain extends deviceBase {
             })
             .catch(async (e: any) => {
               await this.apiError(e)
-              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
               await this.BLEPushConnection()
             })
         } else {
@@ -684,7 +684,7 @@ export class Curtain extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
       }
     } else {
       this.debugLog(`No changes (openAPIpushChanges), CurrentPosition: ${this.WindowCovering.CurrentPosition}, TargetPosition: ${this.WindowCovering.TargetPosition}`)

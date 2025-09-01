@@ -188,7 +188,7 @@ export class CeilingLight extends deviceBase {
           await this.pushChanges()
         } catch (e: any) {
           await this.apiError(e)
-          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${e.message || e}`)
+          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
         }
         this.ceilingLightUpdateInProgress = false
       })
@@ -355,7 +355,7 @@ export class CeilingLight extends deviceBase {
       }
     } catch (e: any) {
       await this.apiError(e)
-      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
     }
   }
 
@@ -458,7 +458,7 @@ export class CeilingLight extends deviceBase {
             })
             .catch(async (e: any) => {
               await this.apiError(e)
-              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
               await this.BLEPushConnection()
             })
         } else {
@@ -495,7 +495,7 @@ export class CeilingLight extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
       }
     } else {
       this.debugLog(`No changes (openAPIpushChanges), On: ${this.LightBulb.On}, OnCached: ${this.accessory.context.On}`)
@@ -527,7 +527,7 @@ export class CeilingLight extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed pushHueSaturationChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+        this.errorLog(`failed pushHueSaturationChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
       }
     } else {
       this.debugLog(`No changes (pushHueSaturationChanges), Hue: ${this.LightBulb.Hue}, HueCached: ${this.accessory.context.Hue}, Saturation: ${this.LightBulb.Saturation}, SaturationCached: ${this.accessory.context.Saturation}`)
@@ -557,7 +557,7 @@ export class CeilingLight extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed pushColorTemperatureChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+        this.errorLog(`failed pushColorTemperatureChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
       }
     } else {
       this.debugLog(`No changes (pushColorTemperatureChanges), ColorTemperature: ${this.LightBulb.ColorTemperature}, ColorTemperatureCached: ${this.accessory.context.ColorTemperature}`)
@@ -585,7 +585,7 @@ export class CeilingLight extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed pushBrightnessChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+        this.errorLog(`failed pushBrightnessChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
       }
     } else {
       this.debugLog(`No changes (pushBrightnessChanges), Brightness: ${this.LightBulb.Brightness}, BrightnessCached: ${this.accessory.context.Brightness}`)

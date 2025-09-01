@@ -262,7 +262,7 @@ export class Bot extends deviceBase {
           }
         } catch (e: any) {
           await this.apiError(e)
-          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${e.message || e}`)
+          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
         }
         this.botUpdateInProgress = false
       })
@@ -445,7 +445,7 @@ export class Bot extends deviceBase {
       }
     } catch (e: any) {
       await this.apiError(e)
-      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
     }
   }
 
@@ -528,7 +528,7 @@ export class Bot extends deviceBase {
             })
             .catch(async (e: any) => {
               await this.apiError(e)
-              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
               await this.BLEPushConnection()
             })
         } else if (this.botMode === 'switch') {
@@ -559,7 +559,7 @@ export class Bot extends deviceBase {
             })
             .catch(async (e: any) => {
               await this.apiError(e)
-              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
               await this.BLEPushConnection()
             })
         } else {
@@ -616,7 +616,7 @@ export class Bot extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
       }
     } else {
       this.debugLog(`No Changes (openAPIpushChanges), On: ${this.On} OnCached: ${this.accessory.context.On}`)

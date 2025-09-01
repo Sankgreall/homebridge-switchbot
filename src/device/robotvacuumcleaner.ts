@@ -156,7 +156,7 @@ export class RobotVacuumCleaner extends deviceBase {
           await this.pushChanges()
         } catch (e: any) {
           await this.apiError(e)
-          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${e.message || e}`)
+          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
         }
         this.robotVacuumCleanerUpdateInProgress = false
       })
@@ -339,7 +339,7 @@ export class RobotVacuumCleaner extends deviceBase {
       }
     } catch (e: any) {
       await this.apiError(e)
-      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
     }
   }
 
@@ -423,7 +423,7 @@ export class RobotVacuumCleaner extends deviceBase {
             })
             .catch(async (e: any) => {
               await this.apiError(e)
-              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
               await this.BLEPushConnection()
             })
         } else {
@@ -460,7 +460,7 @@ export class RobotVacuumCleaner extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
       }
     } else {
       this.debugLog(`No changes (openAPIpushChanges), On: ${this.LightBulb.On}, OnCached: ${this.accessory.context.On}`)
@@ -496,7 +496,7 @@ export class RobotVacuumCleaner extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
       }
     } else {
       this.debugLog(`No changes (openAPIpushBrightnessChanges), Brightness: ${this.LightBulb.Brightness}, BrightnessCached: ${this.accessory.context.Brightness}`)

@@ -433,7 +433,7 @@ export class MeterPro extends deviceBase {
       }
     } catch (e: any) {
       await this.apiError(e)
-      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
+      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || String(e)}`)
     }
   }
 
