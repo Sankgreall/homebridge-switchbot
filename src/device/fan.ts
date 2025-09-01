@@ -186,7 +186,7 @@ export class Fan extends deviceBase {
           await this.pushChanges()
         } catch (e: any) {
           await this.apiError(e)
-          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${e.message || e}`)
         }
         this.fanUpdateInProgress = false
       })
@@ -393,7 +393,7 @@ export class Fan extends deviceBase {
       }
     } catch (e: any) {
       await this.apiError(e)
-      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
     }
   }
 
@@ -490,7 +490,7 @@ export class Fan extends deviceBase {
             })
             .catch(async (e: any) => {
               await this.apiError(e)
-              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
               await this.BLEPushConnection()
             })
         } else {
@@ -527,7 +527,7 @@ export class Fan extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
       }
     } else {
       this.debugLog(`No changes (openAPIpushChanges), Active: ${this.Fan.Active}, ActiveCached: ${this.accessory.context.Active}`)
@@ -555,7 +555,7 @@ export class Fan extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed pushRotationSpeedChanges with ${this.device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+        this.errorLog(`failed pushRotationSpeedChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
       }
     } else {
       this.debugLog(`No changes (pushRotationSpeedChanges), RotationSpeed: ${this.Fan.RotationSpeed}, RotationSpeedCached: ${this.accessory.context.RotationSpeed}`)
@@ -584,7 +584,7 @@ export class Fan extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed pushSwingModeChanges with ${this.device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+        this.errorLog(`failed pushSwingModeChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
       }
     } else {
       this.debugLog(`No changes (pushSwingModeChanges), SwingMode: ${this.Fan.SwingMode}, SwingModeCached: ${this.accessory.context.SwingMode}`)

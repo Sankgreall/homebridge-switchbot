@@ -177,7 +177,7 @@ export class Humidifier extends deviceBase {
           await this.pushChanges()
         } catch (e: any) {
           await this.apiError(e)
-          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+          this.errorLog(`failed pushChanges with ${device.connectionType} Connection, Error Message: ${e.message || e}`)
         }
         this.humidifierUpdateInProgress = false
       })
@@ -390,7 +390,7 @@ export class Humidifier extends deviceBase {
       }
     } catch (e: any) {
       await this.apiError(e)
-      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+      this.errorLog(`failed openAPIRefreshStatus with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
     }
   }
 
@@ -459,7 +459,7 @@ export class Humidifier extends deviceBase {
             })
             .catch(async (e: any) => {
               await this.apiError(e)
-              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+              this.errorLog(`failed BLEpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
               await this.BLEPushConnection()
             })
         } else {
@@ -498,7 +498,7 @@ export class Humidifier extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+        this.errorLog(`failed openAPIpushChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
       }
     } else if ((this.HumidifierDehumidifier.TargetHumidifierDehumidifierState === this.hap.Characteristic.TargetHumidifierDehumidifierState.HUMIDIFIER_OR_DEHUMIDIFIER) && (this.HumidifierDehumidifier.Active === this.hap.Characteristic.Active.ACTIVE)) {
       await this.pushAutoChanges()
@@ -532,7 +532,7 @@ export class Humidifier extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed pushAutoChanges with ${this.device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+        this.errorLog(`failed pushAutoChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
       }
     } else {
       this.debugLog(`No changes (pushAutoChanges), TargetHumidifierDehumidifierState: ${this.HumidifierDehumidifier.TargetHumidifierDehumidifierState}, Active: ${this.HumidifierDehumidifier.Active}`)
@@ -564,7 +564,7 @@ export class Humidifier extends deviceBase {
         }
       } catch (e: any) {
         await this.apiError(e)
-        this.errorLog(`failed pushActiveChanges with ${this.device.connectionType} Connection, Error Message: ${JSON.stringify(e.message)}`)
+        this.errorLog(`failed pushActiveChanges with ${this.device.connectionType} Connection, Error Message: ${e.message || e}`)
       }
     } else {
       this.debugLog(`No changes (pushActiveChanges), Active: ${this.HumidifierDehumidifier.Active}`)
